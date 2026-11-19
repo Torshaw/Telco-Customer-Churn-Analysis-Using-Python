@@ -291,8 +291,6 @@ Telco-Customer-Churn-Analysis/
 └── Telco_Customer_Churn_EDA.ipynb
 ```
 
-The repository structure above is a suggested layout. Add the dataset, notebook, and exported visualisations to their corresponding folders when organising the repository.
-
 ## Author
 
 **Abdulmuiz Abdulazeez Arikewushola**
