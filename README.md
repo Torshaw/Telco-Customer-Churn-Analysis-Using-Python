@@ -44,18 +44,15 @@ The overall churn rate of 26.54% indicates that more than one in every four cust
 **Code:**
 
 ```python
-churn_counts = df['churn'].value_counts()
+plt.figure(figsize=(7, 5))
+ax = sns.countplot(data=df, x=churn_col, order=df[churn_col].value_counts().index)
 
-churn_counts.plot(
-    kind='bar',
-    figsize=(8, 5),
-    color=['steelblue', 'salmon']
-)
-
-plt.title('Customer Churn Distribution')
-plt.xlabel('Churn')
-plt.ylabel('Number of Customers')
-plt.xticks(rotation=0)
+for container in ax.containers:
+    ax.bar_label(container)
+    
+plt.title("Customer Churn Distribution")
+plt.xlabel("Churn status")
+plt.ylabel("Number of customers")
 plt.tight_layout()
 plt.show()
 ```
@@ -109,16 +106,10 @@ The difference suggests that customer retention is particularly important during
 
 ```python
 plt.figure(figsize=(8, 5))
-
-sns.boxplot(
-    data=df,
-    x='churn',
-    y='tenure'
-)
-
-plt.title('Customer Tenure by Churn Status')
-plt.xlabel('Churn')
-plt.ylabel('Tenure (Months)')
+sns.boxplot(data=df, x="churn", y="tenure", order=["No", "Yes"])
+plt.title("Customer Tenure by Churn Status")
+plt.xlabel("Churn")
+plt.ylabel("Tenure (Months)")
 plt.tight_layout()
 plt.show()
 ```
@@ -142,20 +133,25 @@ Customers who have stayed for 37 months or longer have the highest average month
 **Code:**
 
 ```python
-monthly_charges_by_tenure = df.groupby(
-    'tenure_category'
-)['monthlycharges'].mean()
-
-monthly_charges_by_tenure.plot(
-    kind='bar',
-    figsize=(8, 5),
-    color='steelblue'
+monthly_charges_by_tenure = (
+    df.groupby("tenure_category", observed=False)["monthlycharges"]
+    .mean()
 )
 
-plt.title('Average Monthly Charges by Tenure Category')
-plt.xlabel('Tenure Category')
-plt.ylabel('Average Monthly Charges')
-plt.xticks(rotation=0)
+display(monthly_charges_by_tenure.round(2))
+
+plt.figure(figsize=(9, 6))
+ax = sns.barplot(
+    x=monthly_charges_by_tenure.index,
+    y=monthly_charges_by_tenure.values
+)
+
+for container in ax.containers:
+    ax.bar_label(container, fmt="%.2f", padding=3)
+
+plt.title("Average Monthly Charges by Tenure Category")
+plt.xlabel("Tenure Category")
+plt.ylabel("Average Monthly Charges")
 plt.tight_layout()
 plt.show()
 ```
