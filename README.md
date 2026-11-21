@@ -293,7 +293,8 @@ Telco-Customer-Churn-Analysis/
 
 Data Analyst | Excel | SQL | Power BI | Python
 
-[LinkedIn](https://www.linkedin.com/in/torshaw) | [E-mail](aatorshaw.@gmail.com)
+[E-mail](mailto:aatorshaw.@gmail.com)
+ | [LinkedIn](https://www.linkedin.com/in/torshaw)
 
 ---
 
